@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @route.errors.any? %>
+  <% @route.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Route #<%= @route.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_route/<%= @route.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for departure_id -->
+      <div class="form-group">
+        <label for="departure_id" class="control-label">
+          Departure
+        </label>
+
+        <input type="text" id="departure_id" name="departure_id" placeholder="Departure" class="form-control" value="<%= @route.departure_id %>">
+      </div>
+
+      <!-- Label and input for arrival_id -->
+      <div class="form-group">
+        <label for="arrival_id" class="control-label">
+          Arrival
+        </label>
+
+        <input type="text" id="arrival_id" name="arrival_id" placeholder="Arrival" class="form-control" value="<%= @route.arrival_id %>">
+      </div>
+
+      <!-- Label and input for plane_id -->
+      <div class="form-group">
+        <label for="plane_id" class="control-label">
+          Plane
+        </label>
+
+        <input type="text" id="plane_id" name="plane_id" placeholder="Plane" class="form-control" value="<%= @route.plane_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Route
+      </button>
+      or
+      <a href="/routes/<%= @route.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

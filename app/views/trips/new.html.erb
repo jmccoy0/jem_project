@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @trip.errors.any? %>
+  <% @trip.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Trip</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_trip" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for plane_id -->
+      <div class="form-group">
+        <label for="plane_id" class="control-label">
+          Plane
+        </label>
+
+        <input type="text" id="plane_id" name="plane_id" placeholder="Plane" class="form-control" value="<%= @trip.plane_id %>">
+      </div>
+
+      <!-- Label and input for route_id -->
+      <div class="form-group">
+        <label for="route_id" class="control-label">
+          Route
+        </label>
+
+        <input type="text" id="route_id" name="route_id" placeholder="Route" class="form-control" value="<%= @trip.route_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Trip
+      </button>
+      or
+      <a href="/trips">Cancel</a>
+    </form>
+  </div>
+</div>

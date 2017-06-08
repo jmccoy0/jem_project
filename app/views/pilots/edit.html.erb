@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @pilot.errors.any? %>
+  <% @pilot.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Pilot #<%= @pilot.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_pilot/<%= @pilot.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @pilot.name %>">
+      </div>
+
+      <!-- Label and input for rank -->
+      <div class="form-group">
+        <label for="rank" class="control-label">
+          Rank
+        </label>
+
+        <input type="text" id="rank" name="rank" placeholder="Rank" class="form-control" value="<%= @pilot.rank %>">
+      </div>
+
+      <!-- Label and input for bio -->
+      <div class="form-group">
+        <label for="bio" class="control-label">
+          Bio
+        </label>
+
+        <input type="text" id="bio" name="bio" placeholder="Bio" class="form-control" value="<%= @pilot.bio %>">
+      </div>
+
+      <!-- Label and input for photo_id -->
+      <div class="form-group">
+        <label for="photo_id" class="control-label">
+          Photo
+        </label>
+
+        <input type="text" id="photo_id" name="photo_id" placeholder="Photo" class="form-control" value="<%= @pilot.photo_id %>">
+      </div>
+
+      <!-- Label and input for plane_id -->
+      <div class="form-group">
+        <label for="plane_id" class="control-label">
+          Plane
+        </label>
+
+        <input type="text" id="plane_id" name="plane_id" placeholder="Plane" class="form-control" value="<%= @pilot.plane_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Pilot
+      </button>
+      or
+      <a href="/pilots/<%= @pilot.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

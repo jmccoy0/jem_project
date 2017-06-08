@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @plane.errors.any? %>
+  <% @plane.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Plane #<%= @plane.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_plane/<%= @plane.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for model -->
+      <div class="form-group">
+        <label for="model" class="control-label">
+          Model
+        </label>
+
+        <input type="text" id="model" name="model" placeholder="Model" class="form-control" value="<%= @plane.model %>">
+      </div>
+
+      <!-- Label and input for capacity -->
+      <div class="form-group">
+        <label for="capacity" class="control-label">
+          Capacity
+        </label>
+
+        <input type="text" id="capacity" name="capacity" placeholder="Capacity" class="form-control" value="<%= @plane.capacity %>">
+      </div>
+
+      <!-- Label and input for cabin_height -->
+      <div class="form-group">
+        <label for="cabin_height" class="control-label">
+          Cabin height
+        </label>
+
+        <input type="text" id="cabin_height" name="cabin_height" placeholder="Cabin height" class="form-control" value="<%= @plane.cabin_height %>">
+      </div>
+
+      <!-- Label and input for photo_id -->
+      <div class="form-group">
+        <label for="photo_id" class="control-label">
+          Photo
+        </label>
+
+        <input type="text" id="photo_id" name="photo_id" placeholder="Photo" class="form-control" value="<%= @plane.photo_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Plane
+      </button>
+      or
+      <a href="/planes/<%= @plane.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
