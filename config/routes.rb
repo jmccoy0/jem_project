@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get "/delete_pilot/:id", :controller => "pilots", :action => "destroy"
 
   # Root
-  root to: "pilots#show"
+  root to: "pilots#index"
 
   #------------------------------
 
