@@ -18,6 +18,15 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
+      <!-- Label and input for source -->
+      <div class="form-group">
+        <label for="source" class="control-label">
+          Image Source
+        </label>
+
+        <input type="text" id="source" name="source" placeholder="source" class="form-control" value="<%= @photo.source %>">
+      </div>
+
       <button class="btn btn-success">
         Create Photo
       </button>

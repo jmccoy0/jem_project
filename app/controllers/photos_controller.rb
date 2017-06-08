@@ -19,6 +19,8 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new
+    @photo.source = params[:source]
+    @photo.save
 
 
     save_status = @photo.save
