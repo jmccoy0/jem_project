@@ -87,4 +87,22 @@ namespace :slurp do
 
   end
 
+  task trips: :environment do
+
+    require "csv"
+
+    csv_text = File.read(Rails.root.join("lib", "csvs", "trips.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+    csv.each do |row|
+      t = Trip.new
+      t.plane_id = row["plane_id"]
+      t.route_id = row["route_id"]
+      t.save
+    end
+
+    puts "There are now #{Trip.count} rows in the trips table"
+
+  end
+
+
 end

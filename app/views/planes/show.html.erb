@@ -1,34 +1,30 @@
 <div class="page-header">
-  <h3>Plane #<%= @plane.id %></h3>
+  <h3><%= @plane.model %></h3>
 </div>
 
 <div class="row">
-  <div class="col-md-12 mb-2">
+  <div class="col-md-12 mb-4">
     <dl class="dl-horizontal">
-      <dt>Model</dt>
-      <dd><%= @plane.model %></dd>
+
+      <dd><img src="<%= @plane.photo.source %>" width="600" class="img-circle"></dd>
 
       <dt>Capacity</dt>
-      <dd><%= @plane.capacity %></dd>
+      <dd><%= @plane.capacity %> passengers</dd>
 
       <dt>Cabin height</dt>
-      <dd><%= @plane.cabin_height %></dd>
+      <dd><%= @plane.cabin_height %> ft</dd>
 
-      <dt>Photo</dt>
-      <dd><%= @plane.photo_id %></dd>
+      <dt>Pilots</dt>
+      <% @plane.pilots.each do |pilot| %>
+        <dd><a href="/pilots/<%= pilot.id %>"><%= pilot.name %></a></dd>
+      <% end %>
+
+      <dt><a href="/routes">Routes</a></dt>
+      <% @plane.trips.each do |trip| %>
+        <dd><%= trip.route.departure.city %> to <%= trip.route.arrival.city %></dd>
+      <% end %>
 
     </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/planes" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/planes/<%= @plane.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_plane/<%= @plane.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
   </div>
 </div>

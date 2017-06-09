@@ -1,6 +1,7 @@
 class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
+    @my_routes = current_user.bookmarked_routes
 
     render("bookmarks/index.html.erb")
   end
@@ -29,7 +30,7 @@ class BookmarksController < ApplicationController
     if save_status == true
       redirect_to("/routes", :notice => "Bookmark created successfully.")
     else
-      render("bookmarks/new.html.erb")
+      redirect_to("/routes", :alert => "Bookmark could not be created successfully.")
     end
   end
 

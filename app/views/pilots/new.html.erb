@@ -51,7 +51,7 @@
           Photo
         </label>
 
-        <input type="text" id="photo_id" name="photo_id" placeholder="Photo" class="form-control" value="<%= @pilot.photo_id %>">
+        <%= select_tag("photo_id", options_from_collection_for_select(Photo.all, :id, :id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for plane_id -->
@@ -60,7 +60,8 @@
           Plane
         </label>
 
-        <input type="text" id="plane_id" name="plane_id" placeholder="Plane" class="form-control" value="<%= @pilot.plane_id %>">
+        <%= select_tag("plane_id", options_from_collection_for_select(Plane.all, :id, :model), :class => "form-control") %>
+
       </div>
 
       <button class="btn btn-success">

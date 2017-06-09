@@ -1,37 +1,24 @@
 <div class="page-header">
-  <h3>Pilot #<%= @pilot.id %></h3>
+  <h3><%= @pilot.name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @pilot.name %></dd>
+
+      <dd><img src="<%= @pilot.photo.source %>" class="img-circle"></dd>
 
       <dt>Rank</dt>
       <dd><%= @pilot.rank %></dd>
 
-      <dt>Bio</dt>
+      <dt>About</dt>
       <dd><%= @pilot.bio %></dd>
 
-      <dt>Photo</dt>
-      <dd><%= @pilot.photo_id %></dd>
 
       <dt>Plane</dt>
-      <dd><%= @pilot.plane_id %></dd>
+      <dd><%= @pilot.plane.model %></dd>
 
     </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/pilots" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/pilots/<%= @pilot.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_pilot/<%= @pilot.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
   </div>
 </div>

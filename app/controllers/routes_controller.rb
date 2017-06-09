@@ -1,6 +1,7 @@
 class RoutesController < ApplicationController
   def index
     @routes = Route.all
+    @bookmark = Bookmarks.all
 
     render("routes/index.html.erb")
   end
