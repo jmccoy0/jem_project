@@ -27,7 +27,7 @@ class BookmarksController < ApplicationController
     save_status = @bookmark.save
 
     if save_status == true
-      redirect_to("/bookmarks/#{@bookmark.id}", :notice => "Bookmark created successfully.")
+      redirect_to("/routes", :notice => "Bookmark created successfully.")
     else
       render("bookmarks/new.html.erb")
     end
