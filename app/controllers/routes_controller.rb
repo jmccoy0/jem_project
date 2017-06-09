@@ -22,7 +22,6 @@ class RoutesController < ApplicationController
 
     @route.departure_id = params[:departure_id]
     @route.arrival_id = params[:arrival_id]
-    @route.plane_id = params[:plane_id]
 
     save_status = @route.save
 
@@ -44,7 +43,6 @@ class RoutesController < ApplicationController
 
     @route.departure_id = params[:departure_id]
     @route.arrival_id = params[:arrival_id]
-    @route.plane_id = params[:plane_id]
 
     save_status = @route.save
 

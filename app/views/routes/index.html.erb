@@ -1,7 +1,6 @@
 <div class="page-header">
   <h1>
-    Routes
-    <a href="/routes/new" class="btn btn-lg btn-success">New Route</a>
+    Where We Fly
   </h1>
 </div>
 
@@ -11,19 +10,46 @@
       <tr>
         <th>Departure</th>
         <th>Arrival</th>
-        <th>Plane</th>
-        <th>Actions</th>
+        <th>Bookmark this route!</th>
       </tr>
 
       <% @routes.each do |route| %>
       <tr>
-        <td><%= route.departure_id %></td>
-        <td><%= route.arrival_id %></td>
-        <td><%= route.plane_id %></td>
+        <td><%= route.departure.call_letters %></td>
+        <td><%= route.arrival.call_letters %></td>
         <td>
-          <a href="/routes/<%= route.id %>" class="btn btn-primary">Show</a>
-          <a href="/routes/<%= route.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_route/<%= route.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% if current_user.bookmarked_routes.ids.include? route.id %>
+          <form action="/delete_bookmark/<%= route.bookmarks.find_by(:user_id => current_user.id).id %>">
+
+            <!-- Label and input for like -->
+                <input type="hidden" id="id" name="id" value="<%= route.bookmarks.find_by(:user_id => current_user.id).id %>">
+
+                <button class="btn btn-link">
+                  <i class="fa fa-bookmark"></i>
+                </button>
+          </form>
+          <% else %>
+            <form action="/create_bookmark" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+              <!-- Input for user_id -->
+                <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+              <!-- Input for route_id -->
+                <input type="hidden" id="route_id" name="route_id" placeholder="Route" class="form-control" value="<%= route.id %>">
+              </div>
+
+              <!-- Label and input for date -->
+              <div class="form-group">
+                <input type="text" id="date" name="date" placeholder="Date" class="form-control">
+              </div>
+
+              <button class="btn btn-success">
+                <i class="fa fa-bookmark-o"></i>
+              </button>
+            </form>
+          <% end %>
         </td>
       </tr>
       <% end %>
