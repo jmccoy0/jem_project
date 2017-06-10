@@ -3,7 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12 mb-2">
+  <div class="col-md-6 col-md-offset-3 mb-2">
     <dl class="dl-horizontal">
 
       <dd><img src="<%= @pilot.photo.source %>" class="img-circle"></dd>
@@ -17,6 +17,48 @@
 
       <dt>Plane</dt>
       <dd><%= @pilot.plane.model %></dd>
+
+      <dt>Reviews</dt>
+      <% @pilot.reviews.each do |review| %>
+        <dd>
+          <%= review.comment %>
+          <small>
+            <%= review.user.username %>
+            <%= time_ago_in_words(review.created_at) %>
+            <% if review.user_id == current_user.id %>
+            <a href="/delete_review/<%= review.id %>" rel="nofollow"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            <% else %>
+            <% end %>
+          </small>
+        </dt>
+      <% end %>
+
+
+      <dt>Add a review</dt>
+      <dd>
+        <form action="/create_review" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for user_id -->
+          <div class="form-group">
+            <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+          </div>
+
+          <!-- Label and input for comment -->
+          <div class="form-group">
+            <input type="text" id="comment" name="comment" placeholder="Leave <%= @pilot.name %> a review!" class="form-control">
+          </div>
+
+          <!-- Label and input for pilot_id -->
+          <div class="form-group">
+            <input type="hidden" id="pilot_id" name="pilot_id" placeholder="Pilot" class="form-control" value="<%= @pilot.id %>">
+          </div>
+
+          <button class="btn btn-success">
+            Submit Review
+        </form>
+      </dd>
 
     </dl>
 

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # Root
+  get "/", :controller => "homes", :action => "show"
+  root to: "homes#show"
+
   # Routes for the Trip resource:
   # CREATE
   get "/trips/new", :controller => "trips", :action => "new"
@@ -33,7 +37,7 @@ Rails.application.routes.draw do
   get "/delete_pilot/:id", :controller => "pilots", :action => "destroy"
 
   # Root
-  root to: "pilots#index"
+
 
   #------------------------------
 

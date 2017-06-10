@@ -19,6 +19,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new
+    
 
     @review.user_id = params[:user_id]
     @review.comment = params[:comment]
@@ -27,7 +28,7 @@ class ReviewsController < ApplicationController
     save_status = @review.save
 
     if save_status == true
-      redirect_to("/reviews/#{@review.id}", :notice => "Review created successfully.")
+      redirect_to(:back, :notice => "Review created successfully.")
     else
       render("reviews/new.html.erb")
     end

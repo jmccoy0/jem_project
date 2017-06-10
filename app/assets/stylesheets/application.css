@@ -21,3 +21,7 @@
  .img-circle {
     border-radius: 50%;
 }
+  .leftalign {
+    position:relative;
+    left:-130px;
+}
