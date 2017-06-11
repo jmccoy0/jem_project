@@ -4,8 +4,46 @@
   </h1>
 </div>
 
+
+<% if current_user.id == 1 %>
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
+    <table class="table table-striped table-hover">
+
+      <tr>
+        <td></td>
+        <td>Jets We Fly</td>
+        <td>Capacity</td>
+        <td>Cabin Height</td>
+        <td>Actions</td>
+      </tr>
+
+      <% @planes.each do |plane| %>
+      <tr>
+        <td>
+          <img src="<%= plane.photo.source %>" width="300" class="roundrect">
+        </td>
+        <td><a href="/planes/<%= plane.id %>"><%= plane.model %></a></td>
+        <td><%= plane.capacity %> passengers</td>
+        <td><%= plane.cabin_height %> ft</td>
+        <td>
+          <a href="/planes/<%= plane.id %>/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="/delete_plane/<%= plane.id %>" rel="nofollow"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="col-md-6 col-md-offset-3 mb-4" style="text-align:center">
+  <a href="/planes/new">Add a new plane</a>
+</div>
+
+<% else %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 mb-4">
     <table class="table table-striped table-hover">
 
       <tr>
@@ -28,3 +66,5 @@
     </table>
   </div>
 </div>
+
+<% end %>

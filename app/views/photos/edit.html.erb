@@ -12,11 +12,35 @@
   <h3>Edit Photo #<%= @photo.id %></h3>
 </div>
 
+<div class="col-md-6 col-md-offset-3 mb-4">
+  <img src="<%= @photo.source %>" width="300">
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <form action="/update_photo/<%= @photo.id %>" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for source -->
+      <div class="form-group">
+        <label for="source" class="control-label">
+          Source
+        </label>
+
+        <input type="text" id="source" name="source" placeholder="Source" class="form-control" value="<%= @photo.source %>">
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="caption" class="control-label">
+          Caption
+        </label>
+
+        <input type="text" id="caption" name="caption" placeholder="Caption" class="form-control" value="<%= @photo.caption %>">
+      </div>
+
+
 
       <button class="btn btn-warning">
         Update Photo

@@ -1,7 +1,6 @@
 <div class="page-header">
   <h1>
-    Arrivals
-    <a href="/arrivals/new" class="btn btn-lg btn-success">New Arrival</a>
+    Airports
   </h1>
 </div>
 
@@ -17,16 +16,19 @@
 
       <% @arrivals.each do |arrival| %>
       <tr>
-        <td><%= arrival.call_letters %></td>
+        <td><a href="/arrivals/<%= arrival.id %>"><%= arrival.call_letters %></a></td>
         <td><%= arrival.city %></td>
         <td><%= arrival.state %></td>
         <td>
-          <a href="/arrivals/<%= arrival.id %>" class="btn btn-primary">Show</a>
-          <a href="/arrivals/<%= arrival.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_arrival/<%= arrival.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <a href="/arrivals/<%= arrival.id %>/edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="/delete_arrival/<%= arrival.id %>" rel="nofollow"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
         </td>
       </tr>
       <% end %>
     </table>
   </div>
+</div>
+
+<div class="col-md-6 col-md-offset-3 mb-4" style="text-align:center">
+  <a href="/arrivals/new">Add a new airport</a>
 </div>

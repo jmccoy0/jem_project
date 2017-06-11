@@ -1,15 +1,21 @@
 <div class="page-header">
-  <h3>Photo #<%= @photo.id %></h3>
+  <h3><%= @photo.caption %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
     </dl>
-    <div>
-      <img src="<%= @photo.source %>">
-
+    <div class="col-md-12">
+      <img src="<%= @photo.source %>" width="300">
     </div>
+    <hr>
+  </div>
+</div>
+
+
+<div>
+  <div>
     <div class="btn-group btn-group-justified">
       <a href="/photos" class="btn btn-primary">
         Back

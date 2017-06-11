@@ -51,7 +51,7 @@
           Photo
         </label>
 
-        <%= select_tag("photo_id", options_from_collection_for_select(Photo.all, :id, :id), :class => "form-control") %>
+        <%= select_tag("photo_id", options_from_collection_for_select(Photo.all, :id, :caption), :class => "form-control") %>
       </div>
 
       <!-- Label and input for plane_id -->
